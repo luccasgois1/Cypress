@@ -110,7 +110,7 @@ describe('Work with basic elements', () => {
         })
     })
 
-    describe.only('Combo', () => {
+    describe('Combo', () => {
         it('Ao selecionar a opcao "2o grau completo" o campo "Escolaridade" deve aparecer o nome da opcao selecionada', () => {
             cy.get('[data-test=dataEscolaridade]')
                 .select('2o grau completo')
@@ -123,7 +123,11 @@ describe('Work with basic elements', () => {
         })
     })
 
-    
- 
+    describe.only('Combo Multiplo', () => {
+        it('Ao selecionar multiplas opcoes no campo "Pratica esportes ?" todas as opcoes escolhidas aparecerao marcadas', () => {
+            cy.get('[data-testid=dataEsportes]')
+                .select(['natacao', 'futebol', 'nada'])
+        })
+    })
 })
 
