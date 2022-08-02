@@ -74,7 +74,7 @@ describe('Work with basic elements', () => {
         })
     })
 
-    describe.only('Radio Button', () => {
+    describe('Radio Button', () => {
         it('Ao selecionar uma opcao do campo "Sexo" somente esta opcao deve estar selecionado', () => {
             cy.get('#formSexoFem')
                 .click()
@@ -86,6 +86,27 @@ describe('Work with basic elements', () => {
         it('O campo "Sexo" deve conter apenas duas opcoes', () => {
             cy.get("[name=formSexo]")
                 .should('have.length', 2)
+        })
+    })
+
+    describe.only('Checkbox', () => {
+        it('Ao clicar na opcao "Pizza" no campo "Qual a sua comida favorida?" a opcao devera estar selecionada', () => {
+            cy.get('#formComidaPizza')
+                .click()
+                .should('be.checked')
+        })
+
+        it('Ao clicar em todos as opcoes do campo "Qual a sua comida favorita?" todas as opcoes devem estar selecionadas', () => {
+            cy.get('[name=formComidaFavorita]')
+                .click({multiple:true})
+            cy.get('#formComidaCarne')
+                .should('be.checked')
+            cy.get('#formComidaFrango')
+                .should('be.checked')
+            cy.get('#formComidaPizza')
+                .should('be.checked')
+            cy.get('#formComidaVegetariana')
+                .should('be.checked')
         })
     })
  
