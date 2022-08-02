@@ -89,7 +89,7 @@ describe('Work with basic elements', () => {
         })
     })
 
-    describe.only('Checkbox', () => {
+    describe('Checkbox', () => {
         it('Ao clicar na opcao "Pizza" no campo "Qual a sua comida favorida?" a opcao devera estar selecionada', () => {
             cy.get('#formComidaPizza')
                 .click()
@@ -109,6 +109,21 @@ describe('Work with basic elements', () => {
                 .should('be.checked')
         })
     })
+
+    describe.only('Combo', () => {
+        it('Ao selecionar a opcao "2o grau completo" o campo "Escolaridade" deve aparecer o nome da opcao selecionada', () => {
+            cy.get('[data-test=dataEscolaridade]')
+                .select('2o grau completo')
+                .should('have.value', '2graucomp')
+        })
+        it('Ao selecionar a opcao "1o grau completo" o campo "Escolaridade" deve aparecer o nome da opcao selecionada', () => {
+            cy.get('[data-test=dataEscolaridade]')
+                .select('1graucomp')
+                .should('have.value', '1graucomp') // Lembre de utilizar o value e nao o texto visot na tela
+        })
+    })
+
+    
  
 })
 
