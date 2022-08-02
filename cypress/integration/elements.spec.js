@@ -24,7 +24,7 @@ describe('Work with basic elements', () => {
         })
     })
     
-    describe ('Links', () => {
+    describe('Links', () => {
         it('Quando clicar no link voltar deve aparecer uma mensagem de confirmação "Voltou!" MODO INDICADO', () => {
             cy.get('[href="#"]').click()
             cy.get('#resultado').should('have.text', 'Voltou!')
@@ -40,7 +40,7 @@ describe('Work with basic elements', () => {
         })
     })
 
-    describe.only('TextFields', () => {
+    describe('TextFields', () => {
         it('Campo do nome deve permitir preenchimento', () => {
             cy.get('#formNome')
                 .type('Cypress Test')
@@ -71,6 +71,21 @@ describe('Work with basic elements', () => {
                 .type('Erro{selectall}Acerto', {delay:10})
                 .should('have.value', 'Acerto')
 
+        })
+    })
+
+    describe.only('Radio Button', () => {
+        it('Ao selecionar uma opcao do campo "Sexo" somente esta opcao deve estar selecionado', () => {
+            cy.get('#formSexoFem')
+                .click()
+                .should('be.checked')
+            cy.get('#formSexoMasc')
+                .should('not.be.checked')
+        })
+
+        it('O campo "Sexo" deve conter apenas duas opcoes', () => {
+            cy.get("[name=formSexo]")
+                .should('have.length', 2)
         })
     })
  
