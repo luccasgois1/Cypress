@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 describe("Cypress basics", () => {
-    it("Should visit a page and assert the title", () => {
+    it.only("Should visit a page and assert the title", () => {
         
         // Remova o comentario abaixo se quiser debugar o teste
         // cy.pause() // Usado para debugar o teste
@@ -11,8 +11,14 @@ describe("Cypress basics", () => {
             .should('equal', "Campo de Treinamento")
             .and('contain', ' de ')
 
+        let syncTitle // Define a variavel que ira guardar o valor do title
         cy.title().then(title => {
             console.log(title)
+            cy.get('#formNome').type(title)
+            syncTitle = title // Salva o nome do titulo em um avariavel
+        })
+        cy.get('[data-cy=dataSobrenome]').then(formNome => {
+            cy.wrap(formNome).type(syncTitle)
         })
     })
 
