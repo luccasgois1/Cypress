@@ -10,6 +10,10 @@ describe("Cypress basics", () => {
         cy.title()
             .should('equal', "Campo de Treinamento")
             .and('contain', ' de ')
+
+        cy.title().then(title => {
+            console.log(title)
+        })
     })
 
     it("Should find and interact with 'Clique Me!' button", () => {

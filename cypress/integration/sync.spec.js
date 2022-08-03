@@ -24,7 +24,8 @@ describe('Esperas...', () => {
             .find('span')
             .should('contain', 'Item 1')
         // Nao utilizar o find quando o elemento demora para aparecer
-        cy.get('#lista li span').should('contain', 'Item 2')
+        cy.get('#lista li span')
+            .should('contain', 'Item 2')
     });
     
     it('Uso do timeout', () => {
@@ -34,7 +35,7 @@ describe('Esperas...', () => {
             .should('contain', 'Item 2')
     });
 
-    it.only('Uso do retry no Click', () => {
+    it('Uso do retry no Click', () => {
         // O retry no caso do click nao funciona 
         // pois o click altera o codigo html e 
         // por seguranca o cypress nao continua
@@ -42,5 +43,17 @@ describe('Esperas...', () => {
         cy.get('#buttonCount')
             .click()
             .should('have.value', '111')
+    });
+
+    it('Should x Then', () => {
+        cy.get('#buttonList').click()
+        cy.get('#lista li span', {timeout:30000})
+            .should(lista_itens => {
+            // .then(lista_itens => {
+                expect(lista_itens).contain('Item 2')
+            })
+        // O Then espera ate ter uma resposta do sistema e enfim ele se executa uma vez
+        // O Should fica tentando acertar a execucao ate atingir o timeout
+        // Casos que precisem de retrys(Should) Casos que precisam apenas de espera de resposta(Then)
     });
 });
