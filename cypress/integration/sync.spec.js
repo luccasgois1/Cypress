@@ -35,7 +35,7 @@ describe('Esperas...', () => {
             .should('contain', 'Item 2')
     });
 
-    it('Uso do retry no Click', () => {
+    it.skip('Uso do retry no Click', () => {
         // O retry no caso do click nao funciona 
         // pois o click altera o codigo html e 
         // por seguranca o cypress nao continua
