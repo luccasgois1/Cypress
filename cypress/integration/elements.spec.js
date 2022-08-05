@@ -121,12 +121,41 @@ describe('Work with basic elements', () => {
                 .select('1graucomp')
                 .should('have.value', '1graucomp') // Lembre de utilizar o value e nao o texto visot na tela
         })
+        
+        it('Verificar se existem 8 opcoes e se sao as corretas', () => {
+            const expectedComboValues = ['1o grau incompleto',
+                                         '1o grau completo',
+                                         '2o grau incompleto',
+                                         '2o grau completo',
+                                         'Superior',
+                                         'Especializacao',
+                                         'Mestrado',
+                                         'Doutorado'
+                                        ]
+            cy.get('[data-test=dataEscolaridade] option')
+                .should('have.length', 8)
+            cy.get('[data-test=dataEscolaridade] option')
+                .then(arrayEscolaridade => {
+                    const valoresEscolaridade = []
+                    arrayEscolaridade.each(function() {
+                        valoresEscolaridade.push(this.innerHTML)
+                    })
+                    expect(valoresEscolaridade).to.include.members(expectedComboValues)
+                })
+        });
     })
 
     describe.only('Combo Multiplo', () => {
         it('Ao selecionar multiplas opcoes no campo "Pratica esportes ?" todas as opcoes escolhidas aparecerao marcadas', () => {
+            const expectedSelection = ['natacao', 'futebol', 'nada']
             cy.get('[data-testid=dataEsportes]')
-                .select(['natacao', 'futebol', 'nada'])
+                .select(expectedSelection)
+            cy.get('[data-testid=dataEsportes]')
+                .invoke('val') // A funcao val retorna os valores em uma array
+                .should('have.length', expectedSelection.length)
+            cy.get('[data-testid=dataEsportes]')
+                .invoke('val') // A funcao val retorna os valores em uma array
+                .should('deep.equal', expectedSelection)
         })
     })
 })
