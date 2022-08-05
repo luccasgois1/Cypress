@@ -41,7 +41,7 @@ describe('Dinamic Test', () => {
             cy.get('[data-cy=dataSobrenome]').type(this.usuario.sobrenome)
             cy.get(`[name=formSexo][value=${this.usuario.sexo}]`).click()
             cy.get('[name=formComidaFavorita]').each(element => {
-                cy.wrap(element.click())
+                cy.wrap(element).click()
             })
             cy.get('[data-test=dataEscolaridade]').select(this.usuario.escolaridade)
             cy.get('[data-testid=dataEsportes]').select(this.usuario.esportes)
@@ -51,14 +51,14 @@ describe('Dinamic Test', () => {
         })
     });
 
-    it.only('Deve selecionar todas as comidas exceto Vegetariano usando each', () => {
+    it('Deve selecionar todas as comidas exceto Vegetariano usando each', () => {
         cy.fixture('userData').as('usuario').then(function () {
             cy.get('#formNome').type(this.usuario.nome)  
             cy.get('[data-cy=dataSobrenome]').type(this.usuario.sobrenome)
             cy.get(`[name=formSexo][value=${this.usuario.sexo}]`).click()
             cy.get('[name=formComidaFavorita]').each(element => {
                 if (element.val() != 'vegetariano')
-                    cy.wrap(element.click())
+                    cy.wrap(element).click()
             })
             cy.get('[data-test=dataEscolaridade]').select(this.usuario.escolaridade)
             cy.get('[data-testid=dataEsportes]').select(this.usuario.esportes)
