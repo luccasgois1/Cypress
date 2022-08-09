@@ -28,7 +28,7 @@ describe('Real Functional Tests', () => {
 
     it('Atualizar uma conta', () => {
         cy.acessarMenuConta()
-         cy.xpath(locators.CONTAS.XP_BTN_ALTERAR ).click()
+         cy.xpath(locators.CONTAS.FN_XP_BTN_ALTERAR('Conta teste') ).click()
         cy.get(locators.CONTAS.NOME)
             .clear()
             .type('Conta teste atualizada')
@@ -47,6 +47,7 @@ describe('Real Functional Tests', () => {
         cy.get(locators.MOVIMENTACAO.DESCRICAO).type('Teste')
         cy.get(locators.MOVIMENTACAO.VALOR).type('123')
         cy.get(locators.MOVIMENTACAO.INTERESSADO).type('TesteMan')
+        cy.get(locators.MOVIMENTACAO.STATUS).click()
         cy.get(locators.MOVIMENTACAO.BTN_SALVAR).click()
         cy.get(locators.MESSAGE).should('contain', 'Movimentação inserida com sucesso')
 
@@ -54,5 +55,11 @@ describe('Real Functional Tests', () => {
         cy.get(locators.EXTRATO.TRANSACOES)
             .should('contain', 'Teste')
             .and('contain','123,00')
+    });
+
+    it('Deve ver o saldo', () => {
+        cy.get(locators.MENU.HOME).click()
+        cy.xpath(locators.SALDO.FN_XP_SALDO_CONTA('Conta para alterar')).should('contain','123,00')
+        
     });
 })

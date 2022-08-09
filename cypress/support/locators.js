@@ -5,6 +5,7 @@ const locators = {
         BTN_LOGIN:'.btn'
     },
     MENU:{
+        HOME:'[data-test=menu-home]',
         SETTINGS:'[data-test=menu-settings]',
         CONTAS:'[href="/contas"]',
         RESET:'[href="/reset"]',
@@ -13,16 +14,20 @@ const locators = {
     CONTAS:{
         NOME:'[data-test=nome]',
         BTN_SALVAR:'.btn',
-        XP_BTN_ALTERAR:"//table//td[contains(.,'Conta teste')]/..//i[@class='far fa-edit']"
+        FN_XP_BTN_ALTERAR: nome => `//table//td[contains(.,'${nome}')]/..//i[@class='far fa-edit']`
     },
     MOVIMENTACAO:{
         DESCRICAO:'[data-test=descricao]',
         VALOR:'[data-test=valor]',
         INTERESSADO:'[data-test=envolvido]',
+        STATUS:'[data-test=status]',
         BTN_SALVAR:'.btn-primary'
     },
     EXTRATO:{
         TRANSACOES:'.list-group > li'
+    },
+    SALDO:{
+        FN_XP_SALDO_CONTA: nome => `//td[contains(.,'${nome}')]/../td[2]`
     },
     MESSAGE:'.toast-message'
 }
