@@ -7,6 +7,7 @@ const locators = {
     MENU:{
         HOME:'[data-test=menu-home]',
         SETTINGS:'[data-test=menu-settings]',
+        EXTRATO:'[data-test=menu-extrato]',
         CONTAS:'[href="/contas"]',
         RESET:'[href="/reset"]',
         MOVIMENTACAO: '[data-test=menu-movimentacao]'
@@ -21,10 +22,12 @@ const locators = {
         VALOR:'[data-test=valor]',
         INTERESSADO:'[data-test=envolvido]',
         STATUS:'[data-test=status]',
+        CONTA:'[data-test=conta]',
         BTN_SALVAR:'.btn-primary'
     },
     EXTRATO:{
-        TRANSACOES:'.list-group > li'
+        TRANSACOES:'.list-group > li',
+        FN_XP_REMOVER_ELEMENTO: nome => `//span[contains(.,'${nome}')]/../../..//i[@class='far fa-trash-alt']`
     },
     SALDO:{
         FN_XP_SALDO_CONTA: nome => `//td[contains(.,'${nome}')]/../td[2]`
